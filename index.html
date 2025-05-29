@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Video Frame Selector</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f2f2f2;
+            padding: 40px;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        form input,
+        form button,
+        label {
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .frame-box {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px;
+            background: white;
+            border: 1px solid #ccc;
+            text-align: center;
+            box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .frame-box img {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        button {
+            background: #007bff;
+            color: white;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Upload a Video, Extract Sharp Frames</h1>
+
+    <form id="uploadForm" enctype="multipart/form-data">
+        <input type="file" name="video" accept="video/*" required>
+
+        <label for="threshold">
+            Clarity Threshold:
+            <input type="range" name="threshold" id="threshold" min="10" max="500" value="100">
+            <span id="thresholdValue">100</span>
+        </label>
+
+        <label>
+            Frame Step Interval:
+            <input type="number" name="step" value="1" min="1">
+        </label>
+
+        <label><input type="checkbox" name="resize"> Resize Frames</label>
+        <label><input type="checkbox" name="make_video"> Combine Into Video</label>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <h2>Selected Frames</h2>
+    <button onclick="downloadSelected()">Download Selected</button>
+    <div id="frames"></div>
+
+    <script src="/main.js"></script>
+
+</body>
+
+</html>
